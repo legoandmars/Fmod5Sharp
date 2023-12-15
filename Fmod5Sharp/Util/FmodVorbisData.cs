@@ -1,16 +1,16 @@
 ﻿using System;
 using System.Linq;
-using System.Text.Json.Serialization;
+using Newtonsoft.Json;
 using BitStreams;
 
 namespace Fmod5Sharp.Util;
 
 internal class FmodVorbisData
 {
-    [JsonPropertyName("headerBytes")]
+    [JsonProperty("headerBytes")]
     public byte[] HeaderBytes { get; set; }
     
-    [JsonPropertyName("seekBit")]
+    [JsonProperty("seekBit")]
     public int SeekBit { get; set; }
     
     [JsonConstructor]

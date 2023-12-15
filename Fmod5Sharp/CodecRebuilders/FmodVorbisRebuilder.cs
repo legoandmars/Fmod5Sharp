@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using System.Text.Json;
 using Fmod5Sharp.ChunkData;
 using Fmod5Sharp.FmodTypes;
 using Fmod5Sharp.Util;
+using Newtonsoft.Json;
 using OggVorbisEncoder;
 
 namespace Fmod5Sharp.CodecRebuilders
@@ -22,7 +22,7 @@ namespace Fmod5Sharp.CodecRebuilders
             using StreamReader reader = new(stream);
 
             var jsonString = reader.ReadToEnd();
-            headers = JsonSerializer.Deserialize(jsonString, Fmod5SharpJsonContext.Default.DictionaryUInt32FmodVorbisData);
+            headers = JsonConvert.DeserializeObject<Dictionary<uint, FmodVorbisData>>(jsonString);
         }
 
         public static byte[] RebuildOggFile(FmodSample sample)
